@@ -1,0 +1,65 @@
+MEDIA MARKT 
+
+1) Créez une base de données « mediamarkt » utf8mb4 en generale_ci.
+
+CREATE DATABASE mediamarkt 
+DEFAULT CHARACTER SET utf8mb4 
+DEFAULT COLLATE utf8mb4_general_ci;
+
+2) Créez dans cette base de données mediamarkt 3 tables (tous les champs non null) :
+
+CREATE TABLE utilisateurs( 
+	nom VARCHAR(100) COLLATE utf8mb4_general_ci NOT NULL, 
+	prenom VARCHAR(100) COLLATE utf8mb4_general_ci NOT NULL, 
+	age INT(11) NOT NULL, 
+	date_de_naissance DATE NOT NULL, 
+	adresse VARCHAR(250) COLLATE utf8mb4_general_ci NOT NULL, 
+	email VARCHAR(100) COLLATE utf8mb4_general_ci NOT NULL 
+) ENGINE=InnoDB;
+
+CREATE TABLE tvs( 
+	nom_TV VARCHAR(150) COLLATE utf8mb4_general_ci NOT NULL, 
+	marque_TV VARCHAR(50) COLLATE utf8mb4_general_ci NOT NULL, 
+	taille INT(20) NOT NULL 
+) ENGINE=InnoDB;
+
+CREATE TABLE smartphones( 
+	nom_smartphone VARCHAR(150) COLLATE utf8mb4_general_ci NOT NULL, 
+	marque_smartphone VARCHAR(50) COLLATE utf8mb4_general_ci NOT NULL,
+	couleur VARCHAR(20) COLLATE utf8mb4_general_ci NOT NULL 
+) ENGINE=InnoDB;
+
+3) Modifier le champ couleur en un champ de type date dont le nom est « date_de_sortie ».
+
+ALTER TABLE smartphones CHANGE couleur date_de_sortie DATE NOT NULL;
+
+4) Rajouter pour ces 3 tables un champ id_nomdelatable qui sera la clé primaire en première position.
+
+ALTER TABLE utilisateurs ADD id_utilisateurs INT AUTO_INCREMENT PRIMARY KEY FIRST;
+
+ALTER TABLE tvs ADD id_tvs INT AUTO_INCREMENT PRIMARY KEY FIRST;
+
+ALTER TABLE smartphones ADD id_smartphones INT AUTO_INCREMENT PRIMARY KEY FIRST;
+
+5) Rajouter 3 enregistrements différents et cohérents par table. Les données vous les récupererez sur internet pour ce qui concerne les tvs et smartphones.
+
+INSERT INTO utilisateurs VALUES 
+	(NULL, "Lee", "Sin", 37, "1989-02-18", "Londres", "lee_sin@gmail.com"), 
+	(NULL, "Dubois", "Emma", 25, "2000-12-06", "Paris", "emmadubois@hotmail.com"), 	(Null, "Smith", "Jenny", 15, "2011-06-07", "Washington", "JennyS@gmail.com");
+
+INSERT INTO tvs VALUES 
+	(NULL, "QE85QN74FATXXN", "SAMSUNG", 85), 
+	(NULL, "75QNED8MB6A", "LG", 75), 
+	(NULL, "32PFS6050/12", "PHILIPS", 32);
+
+INSERT INTO smartphones VALUES 
+	(NULL, "iPhone 18 Pro", "APPLE", "2026-09-18"), 
+	(NULL, "Galaxy A17", "SAMSUNG", "2025-08-14"), 
+	(NULL, "Galaxy S26", "SAMSUNG", "2026-02-25");
+
+
+
+
+
+
+FIN
